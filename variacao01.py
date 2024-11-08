@@ -61,6 +61,7 @@ class UtilitariosAnaliseTexto:
         return 0 if not texto or type(texto) != str else texto.count('.')
 
     def palavras_unicas_ordenadas(self, palavras: list[str]) -> list[str]:
-        """Encontra as palavras únicas em uma lista de palavras e as retorna."""
+        """Encontra as palavras únicas em uma lista de palavras e as retorna.
+            É case and accent sensitive."""
         if not palavras or type(palavras) != list or not len(palavras): return []
         return list(sorted(set(palavras)))

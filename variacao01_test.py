@@ -57,7 +57,7 @@ class TestUtilitariosAnaliseTexto(unittest.TestCase):
         resultado = self.util.prefixo_comum(lista_palavras, prefixo)
         self.assertEqual(resultado, esperado)
 
-    # Testa se a função prefixo_comum levanta um erro quando o tipo de entrada é incorreto
+    # Testa se a função prefixo_comum retorna lista vazia quando o tipo de entrada é incorreto
     def test_prefixo_comum_tipo_errado(self):
         lista_palavras = 1
         prefixo = "cas"
@@ -71,7 +71,15 @@ class TestUtilitariosAnaliseTexto(unittest.TestCase):
         prefixo = ""
         esperado = ["casa", "casamento", "casual", "carro", "cachorro"]
         resultado = self.util.prefixo_comum(lista_palavras, prefixo)
-        self.assertEqual(resultado, esperado)       
+        self.assertEqual(resultado, esperado)      
+        
+    # Testa a função prefixo_comum com uma lista de palavras que possuem prefixos com acento
+    def test_prefixo_comum_com_acento(self):
+        lista_palavras = ["árvore", "árduo", "árido", "carro", "cachorro"]
+        prefixo = "ár"
+        esperado = ["árvore", "árduo", "árido"]
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)
 
     # Testa a função detectar_palavras_chave sem fornecer palavras comuns, usando o padrão
     def test_detectar_palavras_chave_sem_palavra_comum(self):
@@ -132,6 +140,76 @@ class TestUtilitariosAnaliseTexto(unittest.TestCase):
         numero = 1
         esperado = []
         resultado = self.util.fatores_primos(numero)
+        self.assertEqual(resultado, esperado)
+        
+    # Testa a função contar_frases com um texto normal
+    def test_contar_frases(self):
+        texto = "Esta é a primeira frase. Esta é a segunda frase. E esta é a terceira."
+        esperado = 3
+        resultado = self.util.contar_frases(texto)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função contar_frases com um texto sem ponto final
+    def test_contar_frases_sem_ponto_final(self):
+        texto = "Esta é uma frase sem ponto final"
+        esperado = 0
+        resultado = self.util.contar_frases(texto)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função contar_frases com um texto vazio
+    def test_contar_frases_texto_vazio(self):
+        texto = ""
+        esperado = 0
+        resultado = self.util.contar_frases(texto)
+        self.assertEqual(resultado, esperado)
+
+    # Testa se a função contar_frases retorna 0 quando o tipo de entrada é incorreto
+    def test_contar_frases_tipo_errado(self):
+        texto = 12345
+        esperado = 0
+        resultado = self.util.contar_frases(texto)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função contar_frases com um texto que contém acentos
+    def test_contar_frases_com_acentos(self):
+        texto = "Esta é a primeira frase. Esta é a segunda frase com acento: áéíóú. E esta é a terceira."
+        esperado = 3
+        resultado = self.util.contar_frases(texto)
+        self.assertEqual(resultado, esperado)
+        
+    # Testa a função palavras_unicas_ordenadas com uma lista de palavras normal
+    def test_palavras_unicas_ordenadas(self):
+        palavras = ["casa", "carro", "casa", "bicicleta", "carro", "avião"]
+        esperado = ["avião", "bicicleta", "carro", "casa"]
+        resultado = self.util.palavras_unicas_ordenadas(palavras)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função palavras_unicas_ordenadas com uma lista vazia
+    def test_palavras_unicas_ordenadas_lista_vazia(self):
+        palavras = []
+        esperado = []
+        resultado = self.util.palavras_unicas_ordenadas(palavras)
+        self.assertEqual(resultado, esperado)
+
+    # Testa se a função palavras_unicas_ordenadas retorna lista vazia quando o tipo de entrada é incorreto
+    def test_palavras_unicas_ordenadas_tipo_errado(self):
+        palavras = "não é uma lista"
+        esperado = []
+        resultado = self.util.palavras_unicas_ordenadas(palavras)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função palavras_unicas_ordenadas com uma lista de palavras que contém acentos
+    def test_palavras_unicas_ordenadas_com_acentos(self):
+        palavras = ["árvore", "árduo", "árvore", "árido", "carro", "cachorro"]
+        esperado = ["cachorro", "carro", "árduo", "árido", "árvore"]
+        resultado = self.util.palavras_unicas_ordenadas(palavras)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função palavras_unicas_ordenadas com uma lista de palavras que contém números
+    def test_palavras_unicas_ordenadas_com_numeros(self):
+        palavras = ["casa", "carro", "casa", "bicicleta", "carro", "avião", "123", "456", "123"]
+        esperado = ["123", "456", "avião", "bicicleta", "carro", "casa"]
+        resultado = self.util.palavras_unicas_ordenadas(palavras)
         self.assertEqual(resultado, esperado)
         
 if __name__ == '__main__':
