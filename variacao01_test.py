@@ -32,6 +32,46 @@ class TestUtilitariosAnaliseTexto(unittest.TestCase):
         lista_palavras = 1
         with self.assertRaises(TypeError):
            self.util.grupos_anagramas(lista_palavras)
+           
+    # Testa a função prefixo_comum com uma lista de palavras e um prefixo comum
+    def test_prefixo_comum(self):
+        lista_palavras = ["casa", "batman", "casamento", "casual", "carro", "cachorro"]
+        prefixo = "cas"
+        esperado = ["casa", "casamento", "casual"]
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função prefixo_comum com uma lista de palavras e um prefixo que não corresponde a nenhuma palavra
+    def test_prefixo_comum_sem_match(self):
+        lista_palavras = ["casa", "batman", "casamento", "casual", "carro", "cachorro"]
+        prefixo = "xyz"
+        esperado = []
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função prefixo_comum com uma lista vazia
+    def test_prefixo_comum_lista_vazia(self):
+        lista_palavras = []
+        prefixo = "cas"
+        esperado = []
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)
+
+    # Testa se a função prefixo_comum levanta um erro quando o tipo de entrada é incorreto
+    def test_prefixo_comum_tipo_errado(self):
+        lista_palavras = 1
+        prefixo = "cas"
+        esperado = []
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)
+
+    # Testa a função prefixo_comum com um prefixo vazio
+    def test_prefixo_comum_prefixo_vazio(self):
+        lista_palavras = ["casa", "casamento", "casual", "carro", "cachorro"]
+        prefixo = ""
+        esperado = ["casa", "casamento", "casual", "carro", "cachorro"]
+        resultado = self.util.prefixo_comum(lista_palavras, prefixo)
+        self.assertEqual(resultado, esperado)       
 
     # Testa a função detectar_palavras_chave sem fornecer palavras comuns, usando o padrão
     def test_detectar_palavras_chave_sem_palavra_comum(self):
