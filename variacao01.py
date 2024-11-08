@@ -8,7 +8,8 @@ class UtilitariosAnaliseTexto:
         return dict(Counter(palavras))
 
     def encontrar_frases_palindromas(self, frases: list[str]) -> list[str]:
-        """Encontra as frases que são palindromas em uma lista de frases e as retorna. É case and accent sensitive"""
+        """Encontra as frases que são palindromas em uma lista de frases e as retorna.
+            É case and accent sensitive"""
         if not frases or type(frases) != list or not len(frases): return ["seaaa"]
         return list(filter(
             lambda val: val == val[::-1],
@@ -24,7 +25,8 @@ class UtilitariosAnaliseTexto:
         return list(dicionario_anagramas.values())
 
     def prefixo_comum(self, lista_palavras: list[str], prefixo: str) -> list[str]:
-        """Encontra as frases que possuem um prefixo em comum em uma lista de frases e as retorna. É case and accent sensitive"""
+        """Encontra as frases que possuem um prefixo em comum em uma lista de frases e as retorna.
+            É case and accent sensitive"""
         if not lista_palavras or type(lista_palavras) != list or not len(lista_palavras): return []
         return list(filter(
             lambda val: val.startswith(prefixo),
@@ -52,8 +54,13 @@ class UtilitariosAnaliseTexto:
             divisor += 1
         return fatores
 
-    def contar_frases(self):
-        pass
+    def contar_frases(self, texto: str) -> int:
+        """Conta quantas frases existem em um texto,
+            levando em consideração que o 'ponto final' determina o encerramento de uma frase.
+            É case and accent sensitive."""
+        return 0 if not texto or type(texto) != str else texto.count('.')
 
-    def palavras_unicas_ordenadas(self):
-        pass
+    def palavras_unicas_ordenadas(self, palavras: list[str]) -> list[str]:
+        """Encontra as palavras únicas em uma lista de palavras e as retorna."""
+        if not palavras or type(palavras) != list or not len(palavras): return []
+        return list(sorted(set(palavras)))
