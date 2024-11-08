@@ -1,8 +1,8 @@
 from collections import Counter, defaultdict
-
+import re
 
 class UtilitariosAnaliseTexto:
-    def frequencia_palavras(self):
+    def frequencia_palavras(self): # ok
         """Retorna a frequência de cada palavra em um dicionário, ignorando maiúsculas/minúsculas."""
         palavras = self.texto.lower().split()
         return dict(Counter(palavras))
@@ -16,7 +16,7 @@ class UtilitariosAnaliseTexto:
             frases
         ))
 
-    def grupos_anagramas(self, lista_palavras):
+    def grupos_anagramas(self, lista_palavras): # ok
         """Agrupa palavras que são anagramas entre si em uma lista de listas."""
         dicionario_anagramas = defaultdict(list)
         for palavra in lista_palavras:
@@ -33,7 +33,7 @@ class UtilitariosAnaliseTexto:
             lista_palavras
         ))
 
-    def detectar_palavras_chave(self, palavras_comuns=None):
+    def detectar_palavras_chave(self, palavras_comuns=None): # ok
         """Detecta palavras-chave no texto, ignorando palavras comuns fornecidas na lista palavras_comuns."""
         if palavras_comuns is None:
             palavras_comuns = {"de", "a", "o", "e", "do", "da"}
