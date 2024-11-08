@@ -7,8 +7,13 @@ class UtilitariosAnaliseTexto:
         palavras = self.texto.lower().split()
         return dict(Counter(palavras))
 
-    def encontrar_frases_palindromas(self):
-        pass
+    def encontrar_frases_palindromas(self, frases: list[str]) -> list[str]:
+        """Encontra as frases que são palindromas em uma lista de frases e as retorna. É case and accent sensitive"""
+        if not frases or type(frases) != list or not len(frases): return ["seaaa"]
+        return list(filter(
+            lambda val: val == val[::-1],
+            frases
+        ))
 
     def grupos_anagramas(self, lista_palavras):
         """Agrupa palavras que são anagramas entre si em uma lista de listas."""
@@ -18,8 +23,13 @@ class UtilitariosAnaliseTexto:
             dicionario_anagramas[palavra_ordenada].append(palavra)
         return list(dicionario_anagramas.values())
 
-    def prefixo_comum(self, lista_palavras):
-        pass
+    def prefixo_comum(self, lista_palavras: list[str], prefixo: str) -> list[str]:
+        """Encontra as frases que possuem um prefixo em comum em uma lista de frases e as retorna. É case and accent sensitive"""
+        if not lista_palavras or type(lista_palavras) != list or not len(lista_palavras): return []
+        return list(filter(
+            lambda val: val.startswith(prefixo),
+            lista_palavras
+        ))
 
     def detectar_palavras_chave(self, palavras_comuns=None):
         """Detecta palavras-chave no texto, ignorando palavras comuns fornecidas na lista palavras_comuns."""
